@@ -1,0 +1,198 @@
+[
+  {
+    "context": "FINANCIAL",
+    "attribute": "legal_name",
+    "recipient_role": "FINANCIAL_INSTITUTION",
+    "proof_required": false,
+    "rationale": "KYC obligation"
+  },
+  {
+    "context": "FINANCIAL",
+    "attribute": "dob",
+    "recipient_role": "FINANCIAL_INSTITUTION",
+    "proof_required": true,
+    "rationale": "Age/identity verification; proof preferred"
+  },
+  {
+    "context": "FINANCIAL",
+    "attribute": "email",
+    "recipient_role": "FINANCIAL_INSTITUTION",
+    "proof_required": false,
+    "rationale": "Account communication"
+  },
+  {
+    "context": "FINANCIAL",
+    "attribute": "phone",
+    "recipient_role": "FINANCIAL_INSTITUTION",
+    "proof_required": false,
+    "rationale": "Two-factor authentication"
+  },
+  {
+    "context": "FINANCIAL",
+    "attribute": "employment_status",
+    "recipient_role": "FINANCIAL_INSTITUTION",
+    "proof_required": false,
+    "rationale": "Creditworthiness assessment"
+  },
+  {
+    "context": "FINANCIAL",
+    "attribute": "income_bracket",
+    "recipient_role": "FINANCIAL_INSTITUTION",
+    "proof_required": false,
+    "rationale": "Loan eligibility"
+  },
+  {
+    "context": "FINANCIAL",
+    "attribute": "geolocation",
+    "recipient_role": "FINANCIAL_INSTITUTION",
+    "proof_required": false,
+    "rationale": "Fraud / AML compliance; region-level only"
+  },
+  {
+    "context": "PROFESSIONAL",
+    "attribute": "legal_name",
+    "recipient_role": "EMPLOYER",
+    "proof_required": false,
+    "rationale": "Employment record"
+  },
+  {
+    "context": "PROFESSIONAL",
+    "attribute": "email",
+    "recipient_role": "EMPLOYER",
+    "proof_required": false,
+    "rationale": "Workplace communication"
+  },
+  {
+    "context": "PROFESSIONAL",
+    "attribute": "phone",
+    "recipient_role": "EMPLOYER",
+    "proof_required": false,
+    "rationale": "Workplace communication"
+  },
+  {
+    "context": "PROFESSIONAL",
+    "attribute": "employment_status",
+    "recipient_role": "EMPLOYER",
+    "proof_required": false,
+    "rationale": "Role / contract type"
+  },
+  {
+    "context": "PROFESSIONAL",
+    "attribute": "dob",
+    "recipient_role": "EMPLOYER",
+    "proof_required": true,
+    "rationale": "Right-to-work age check; proof only"
+  },
+  {
+    "context": "SOCIAL",
+    "attribute": "legal_name",
+    "recipient_role": "SOCIAL_PEER",
+    "proof_required": false,
+    "rationale": "Identity on social platforms"
+  },
+  {
+    "context": "SOCIAL",
+    "attribute": "email",
+    "recipient_role": "SOCIAL_PEER",
+    "proof_required": false,
+    "rationale": "Optional contact sharing"
+  },
+  {
+    "context": "SOCIAL",
+    "attribute": "social_graph",
+    "recipient_role": "SOCIAL_PEER",
+    "proof_required": false,
+    "rationale": "Friend/connection lists"
+  },
+  {
+    "context": "SOCIAL",
+    "attribute": "gaming_history",
+    "recipient_role": "SOCIAL_PEER",
+    "proof_required": false,
+    "rationale": "Gaming profile / achievements"
+  },
+  {
+    "context": "SOCIAL",
+    "attribute": "geolocation",
+    "recipient_role": "SOCIAL_PEER",
+    "proof_required": false,
+    "rationale": "Location sharing; coarse only"
+  },
+  {
+    "context": "MEDICAL",
+    "attribute": "legal_name",
+    "recipient_role": "HEALTHCARE_PROVIDER",
+    "proof_required": false,
+    "rationale": "Patient identity"
+  },
+  {
+    "context": "MEDICAL",
+    "attribute": "dob",
+    "recipient_role": "HEALTHCARE_PROVIDER",
+    "proof_required": false,
+    "rationale": "Patient age / date-of-birth for dosing"
+  },
+  {
+    "context": "MEDICAL",
+    "attribute": "health_condition",
+    "recipient_role": "HEALTHCARE_PROVIDER",
+    "proof_required": false,
+    "rationale": "Clinical necessity"
+  },
+  {
+    "context": "MEDICAL",
+    "attribute": "phone",
+    "recipient_role": "HEALTHCARE_PROVIDER",
+    "proof_required": false,
+    "rationale": "Appointment / prescription contact"
+  },
+  {
+    "context": "MEDICAL",
+    "attribute": "email",
+    "recipient_role": "HEALTHCARE_PROVIDER",
+    "proof_required": false,
+    "rationale": "Appointment / prescription contact"
+  },
+  {
+    "context": "CIVIC",
+    "attribute": "legal_name",
+    "recipient_role": "GOVERNMENT_AGENCY",
+    "proof_required": false,
+    "rationale": "Statutory identity obligation"
+  },
+  {
+    "context": "CIVIC",
+    "attribute": "dob",
+    "recipient_role": "GOVERNMENT_AGENCY",
+    "proof_required": true,
+    "rationale": "Age eligibility (voting, benefits); ZKP preferred"
+  },
+  {
+    "context": "CIVIC",
+    "attribute": "geolocation",
+    "recipient_role": "GOVERNMENT_AGENCY",
+    "proof_required": false,
+    "rationale": "Electoral roll / residency verification"
+  },
+  {
+    "context": "CIVIC",
+    "attribute": "email",
+    "recipient_role": "GOVERNMENT_AGENCY",
+    "proof_required": false,
+    "rationale": "Government service notifications"
+  },
+  {
+    "context": "CIVIC",
+    "attribute": "employment_status",
+    "recipient_role": "GOVERNMENT_AGENCY",
+    "proof_required": false,
+    "rationale": "Benefits / tax eligibility"
+  },
+  {
+    "context": "CIVIC",
+    "attribute": "income_bracket",
+    "recipient_role": "GOVERNMENT_AGENCY",
+    "proof_required": false,
+    "rationale": "Tax / means-tested benefits"
+  }
+]
