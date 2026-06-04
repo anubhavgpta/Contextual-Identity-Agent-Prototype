@@ -2,7 +2,7 @@
 
 **Prototype implementation for:**
 > *Autonomous Identity Disclosure via Contextual Agents in Multi-Platform Systems*
-> Anubhav Gupta & Aditi Shailesh Joshi — Prism '26
+> Anubhav Gupta & Aditi Shailesh Joshi
 
 ---
 
