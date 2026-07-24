@@ -29,6 +29,7 @@ Default trust score:  0.5 for any previously unseen platform
 from __future__ import annotations
 
 import json
+import os
 import secrets
 import sqlite3
 from contextlib import contextmanager
@@ -294,7 +295,10 @@ class PDS:
     def _open(self) -> sqlite3.Connection:
         path_str = str(self._db_path)
         if path_str != ":memory:":
-            self._db_path.parent.mkdir(parents=True, exist_ok=True)
+            self._db_path.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+            if not self._db_path.exists():
+                self._db_path.touch(mode=0o600)
+            os.chmod(path_str, 0o600)
         conn = sqlite3.connect(path_str, check_same_thread=False)
         conn.execute("PRAGMA journal_mode=WAL")
         conn.execute("PRAGMA foreign_keys=ON")
