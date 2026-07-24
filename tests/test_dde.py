@@ -68,7 +68,7 @@ def _make_pds(attrs: dict | None = None) -> PDS:
 
 def _make_dde(pds: PDS | None = None, bbs: BBSEngine | None = None) -> tuple[DisclosureDecisionEngine, PDS, AuditLog]:
     pds = pds or _make_pds()
-    audit = AuditLog(Path(":memory:"))
+    audit = AuditLog(Path(":memory:"), hmac_key=b"test-key")
     dde = DisclosureDecisionEngine(
         pds=pds,
         norm_db=NormDatabase(),

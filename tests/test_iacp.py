@@ -76,7 +76,7 @@ def _make_pds(**extra_attrs) -> PDS:
 
 def _make_session(pds: PDS | None = None) -> tuple[IACPSession, PDS, AuditLog]:
     pds  = pds or _make_pds()
-    audit = AuditLog(Path(":memory:"))
+    audit = AuditLog(Path(":memory:"), hmac_key=b"test-key")
     ipc  = IPC(pds)
     cc   = _MockCC()
     dde  = DisclosureDecisionEngine(
