@@ -1,0 +1,52 @@
+name: Bankai Verify
+
+# Dispatched by Bankai after it opens a remediation pull request, targeting
+# the remediation branch as `ref`. Not triggered on push/pull_request — this
+# workflow only ever runs on-demand, once per remediation PR.
+on:
+  workflow_dispatch:
+    inputs:
+      ticket_id:
+        description: Bankai ticket id this run verifies (for correlation only)
+        required: false
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Detected stack: unknown
+      - run: echo "TODO - add this repo's build steps here"
+
+  image:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # TODO: build (and optionally push) a container image, e.g.:
+      #   - run: docker build -t my-app:${{ github.sha }} .
+      - run: echo "TODO - add this repo's image build steps here"
+
+  deploy-dev:
+    needs: image
+    runs-on: ubuntu-latest
+    steps:
+      # TODO: deploy the image to this repo's own dev environment. Bankai
+      # does not provision or host this environment — it only waits for this
+      # job to report pass/fail.
+      - run: echo "TODO - add this repo's dev-deploy steps here"
+
+  functional-test:
+    needs: deploy-dev
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "TODO - add this repo's FT test commands here"
+
+  integration-test:
+    needs: functional-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "TODO - add this repo's IT test commands here"
