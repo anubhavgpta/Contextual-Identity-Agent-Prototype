@@ -28,6 +28,7 @@ import hashlib
 import hmac
 import json
 import sqlite3
+import threading
 from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
@@ -65,6 +66,7 @@ class AuditLog:
     ) -> None:
         self._db_path = db_path
         self._key = hmac_key
+        self._lock = threading.Lock()
         self._conn = self._open_connection()
         self._init_schema()
 
@@ -75,27 +77,29 @@ class AuditLog:
     def append(self, receipt: DisclosureReceipt) -> None:
         """Persist receipt and extend the HMAC chain."""
         payload = _canonical_json(receipt)
-        prev_hash = self._last_chain_hash()
-        chain_hash = _compute_hmac(self._key, payload + prev_hash)
 
-        with self._tx() as cur:
-            cur.execute(
-                """
-                INSERT INTO disclosure_log
-                    (receipt_id, request_id, platform_id, context,
-                     timestamp, payload, chain_hash)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
-                """,
-                (
-                    receipt.receipt_id,
-                    receipt.request_id,
-                    receipt.platform_id,
-                    receipt.context_class.value,
-                    receipt.timestamp.astimezone(timezone.utc).isoformat(),
-                    payload,
-                    chain_hash,
-                ),
-            )
+        with self._lock:
+            with self._tx() as cur:
+                prev_hash = self._last_chain_hash()
+                chain_hash = _compute_hmac(self._key, payload + prev_hash)
+
+                cur.execute(
+                    """
+                    INSERT INTO disclosure_log
+                        (receipt_id, request_id, platform_id, context,
+                         timestamp, payload, chain_hash)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    (
+                        receipt.receipt_id,
+                        receipt.request_id,
+                        receipt.platform_id,
+                        receipt.context_class.value,
+                        receipt.timestamp.astimezone(timezone.utc).isoformat(),
+                        payload,
+                        chain_hash,
+                    ),
+                )
 
     def query(
         self,
