@@ -38,11 +38,6 @@ from cia.models.context import ContextClass
 from cia.models.response import DisclosureReceipt, NegotiationStatus
 
 
-# HMAC key — in production this would be derived from a user-controlled
-# secret stored in the PDS.  For the prototype we use a fixed dev key and
-# allow callers to override it.
-_DEFAULT_HMAC_KEY = b"cia-audit-dev-key-change-in-prod"
-
 _GENESIS_HASH = "0" * 64   # sentinel for the first row's prev_chain_hash
 
 
@@ -55,13 +50,13 @@ class AuditLog:
     db_path:
         Path to the SQLite file.  Use ``Path(":memory:")`` for tests.
     hmac_key:
-        Raw bytes used as the HMAC-SHA256 key.  Override for production.
+        Raw bytes used as the HMAC-SHA256 key.
     """
 
     def __init__(
         self,
         db_path: Path,
-        hmac_key: bytes = _DEFAULT_HMAC_KEY,
+        hmac_key: bytes,
     ) -> None:
         self._db_path = db_path
         self._key = hmac_key
